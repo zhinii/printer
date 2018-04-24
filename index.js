@@ -3,11 +3,13 @@ var app = express();
 var http = require('http');
 var io = require('socket.io')(http);
 var path = require('path');
-var server = http.createServer(app);
+
 
 var players = [];
 
 app.use(express.static(__dirname + '/site/laser/'));
+var server = http.createServer(app);
+
 
 app.get('/', function(req, res){
 	res.sendFile('laser.html', { root: path.join(__dirname, '../printer/site/laser') });
@@ -75,6 +77,6 @@ io.on('connection', function(socket){
 	});
 });
 
-http.listen(5009, function(){
+server.listen.on(5009, function(){
 	console.log('listening on *:5009');
 });
