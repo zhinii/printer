@@ -9,7 +9,8 @@ var players = [];
 
 app.use(express.static(__dirname + '/site/laser/'));
 var server = http.createServer(app);
-
+var port = 5009;
+app.set('port', port);
 
 app.get('/', function(req, res){
 	res.sendFile('laser.html', { root: path.join(__dirname, '../printer/site/laser') });
@@ -77,6 +78,7 @@ io.on('connection', function(socket){
 	});
 });
 
-server.listen.on(5009, function(){
-	console.log('listening on *:5009');
+server.listen(port);
+server.on('listening', () => {
+   console.log("Listening on %s", server.address().port);
 });
