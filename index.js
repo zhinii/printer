@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var http = require('http');
 var io = require('socket.io')(http);
 var path = require('path');
+var server = http.createServer(app);
 
 var players = [];
 
