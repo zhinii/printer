@@ -13,7 +13,7 @@ var port = 5009;
 app.set('port', port);
 
 app.get('/', function(req, res){
-	res.sendFile('laser.html', { root: path.join(__dirname, 'site/laser') });
+	res.sendFile('laser.html', { root: path.join(__dirname, '/site/laser') });
 });
 
 /*
