@@ -1,19 +1,15 @@
 var express = require('express');
 var app = express();
-var http = require('http');
+var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
-
 
 var players = [];
 
 app.use(express.static(__dirname + '/site/laser/'));
-var server = http.createServer(app);
-var port = 5009;
-app.set('port', port);
 
 app.get('/', function(req, res){
-	res.sendFile('laser.html', { root: path.join(__dirname, '/site/laser') });
+	res.sendFile('laser.html', { root: path.join(__dirname, '../printer/site/laser') });
 });
 
 /*
@@ -78,7 +74,6 @@ io.on('connection', function(socket){
 	});
 });
 
-server.listen(port);
-server.on('listening', () => {
-   console.log("Listening on %s", server.address().port);
+http.listen(8000, function(){
+	console.log('listening on *:8000');
 });
